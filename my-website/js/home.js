@@ -1,13 +1,9 @@
 function showDisclaimer() {
-  document.getElementById('modal-title').textContent = 'Disclaimer';
-  document.getElementById('modal-description').textContent = 'This website is for educational purposes only. We do not host any content.';
-  document.getElementById('modal').style.display = 'block';
+  alert("Disclaimer: This website is for educational use only.");
 }
 
 function showAboutUs() {
-  document.getElementById('modal-title').textContent = 'About Us';
-  document.getElementById('modal-description').textContent = 'We are a movie and TV show database. Enjoy browsing!';
-  document.getElementById('modal').style.display = 'block';
+  alert("About Us: We provide trending movies and TV shows. ( Owner: Syntaxris )");
 }
 
 const API_KEY = 'bbf34609e2d5c182ec31e6c323fb55ca';
