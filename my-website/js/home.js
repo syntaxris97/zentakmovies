@@ -1,14 +1,14 @@
-// js/home.js
-
 function showDisclaimer() {
-  alert("Disclaimer: This website is for educational use only.");
+  document.getElementById('modal-title').textContent = 'Disclaimer';
+  document.getElementById('modal-description').textContent = 'This website is for educational purposes only. We do not host any content.';
+  document.getElementById('modal').style.display = 'block';
 }
 
 function showAboutUs() {
-  alert("About Us: We provide trending movies and TV shows.");
+  document.getElementById('modal-title').textContent = 'About Us';
+  document.getElementById('modal-description').textContent = 'We are a movie and TV show database. Enjoy browsing!';
+  document.getElementById('modal').style.display = 'block';
 }
-
-// Other existing code (if any)...
 
 const API_KEY = 'bbf34609e2d5c182ec31e6c323fb55ca';
     const BASE_URL = 'https://api.themoviedb.org/3';
