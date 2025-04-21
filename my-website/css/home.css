@@ -131,13 +131,3 @@
       right: 30px;
       font-size: 30px;
     }
-
-.banner {
-  transition: background-image 1s ease;
-  background-size: cover;
-  background-position: center;
-  height: 400px; /* Adjust as needed */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
