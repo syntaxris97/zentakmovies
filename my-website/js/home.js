@@ -8,7 +8,7 @@ function showAboutUs() {
 
 const API_KEY = 'bbf34609e2d5c182ec31e6c323fb55ca';
     const BASE_URL = 'https://api.themoviedb.org/3';
-    const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+    const IMG_URL = 'https://image.tmdb.org/t/p/original';
     let currentItem;
 
     async function fetchTrending(type) {
