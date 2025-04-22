@@ -3,7 +3,7 @@ function showDisclaimer() {
 }
 
 function showAboutUs() {
-  alert("About Us: We provide trending movies and TV shows. ( Owner: Syntaxris )");
+  alert("About Us: We provide trending movies and TV shows. ( Owner: CrisTzy )");
 }
 
 const API_KEY = 'bbf34609e2d5c182ec31e6c323fb55ca';
