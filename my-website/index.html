@@ -12,16 +12,19 @@
 </head>
 
 <body>
-  <div class="navbar">
-    <img src="logo.png" alt="LOGO HERE" />
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="#" onclick="showDisclaimer(); return false;">Disclaimer</a>
-      <a href="#" onclick="showAboutUs(); return false;">About Us</a>
-      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+<div class="navbar">
+    <!-- Add this logo before your nav links -->
+    <div class="logo-container">
+        <img src="images/logo.png" alt="Your Site Logo" class="site-logo">
     </div>
-      </div>
-  </div>
+    
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#" onclick="showDisclaimer(); return false;">Disclaimer</a>
+        <a href="#" onclick="showAboutUs(); return false;">About Us</a>
+        <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()">
+    </div>
+</div>
 
   <div class="banner" id="banner">
     <h1 id="banner-title"></h1>
