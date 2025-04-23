@@ -10,6 +10,23 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script defer src="js/home.js"></script>
+
+  <style>
+    .list.collapsed {
+      max-height: 250px;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .see-more {
+      color: #1e90ff;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: underline;
+      float: right;
+      margin-top: -30px;
+    }
+  </style>
 </head>
 
 <body>
@@ -21,40 +38,44 @@
       <a href="#" onclick="showAboutUs(); return false;">About Us</a>
       <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
     </div>
-      </div>
   </div>
 
   <div class="banner" id="banner">
     <h1 id="banner-title"></h1>
   </div>
 
+  <!-- Trending Movies -->
   <div class="row">
     <h2>Trending Movies</h2>
-    <div class="list" id="movies-list"></div>
+    <a class="see-more" onclick="toggleSeeMore('movies-list', this)">See more...</a>
+    <div class="list collapsed" id="movies-list"></div>
   </div>
 
+  <!-- Trending TV Shows -->
   <div class="row">
     <h2>Trending TV Shows</h2>
-    <div class="list" id="tvshows-list"></div>
+    <a class="see-more" onclick="toggleSeeMore('tvshows-list', this)">See more...</a>
+    <div class="list collapsed" id="tvshows-list"></div>
   </div>
 
+  <!-- Trending Anime -->
   <div class="row">
     <h2>Trending Anime</h2>
-    <div class="list" id="anime-list"></div>
+    <a class="see-more" onclick="toggleSeeMore('anime-list', this)">See more...</a>
+    <div class="list collapsed" id="anime-list"></div>
   </div>
 
   <div class="modal" id="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
       <div class="modal-body">
-  <img id="modal-image" src="" alt="" />
-  <div class="modal-text">
-    <h2 id="modal-title"></h2>
-    <div class="stars" id="modal-rating"></div>
-    <p id="modal-description"></p>
-  </div>
-</div>
-      
+        <img id="modal-image" src="" alt="" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
       <div class="server-selector">
         <label for="server">Change Server:</label>
         <select id="server" onchange="changeServer()">
@@ -73,16 +94,23 @@
     <div class="results" id="search-results"></div>
   </div>
 
-<footer class="footer">
-  <div class="footer-content">
-    <p>&copy; 2025 My Website. All rights reserved.</p>
-    <div class="footer-links" style="display: none;">
-      <a href="#">Disclaimer</a>
-      <a href="#">About Us</a>
-      <a href="#">Contact Us</a>
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 My Website. All rights reserved.</p>
+      <div class="footer-links" style="display: none;">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-  
+  <script>
+    function toggleSeeMore(listId, link) {
+      const list = document.getElementById(listId);
+      list.classList.toggle('collapsed');
+      link.textContent = list.classList.contains('collapsed') ? 'See more...' : 'See less...';
+    }
+  </script>
 </body>
+</html>
