@@ -6,10 +6,46 @@ function showAboutUs() {
   alert("About Us: We provide trending movies and TV shows. ( Owner: CrisTzy )");
 }
 
-const API_KEY = 'bbf34609e2d5c182ec31e6c323fb55ca';
-    const BASE_URL = 'https://api.themoviedb.org/3';
-    const IMG_URL = 'https://image.tmdb.org/t/p/original';
-    let currentItem;
+<div class="trending-container" id="trendingContainer"></div>
+
+<script>
+  const API_KEY = 'bbf34609e2d5c182ec31e6c323fb55ca';
+  const BASE_URL = 'https://api.themoviedb.org/3';
+  const IMG_URL = 'https://image.tmdb.org/t/p/w500'; // w500 is more optimal than original
+
+  async function fetchTrending(type) {
+    const res = await fetch(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
+    const data = await res.json();
+    return data.results;
+  }
+
+  async function showTrendingMovies() {
+    const movies = await fetchTrending('movie'); // or 'tv'
+    const container = document.getElementById('trendingContainer');
+    container.innerHTML = '';
+
+    movies.forEach(movie => {
+      const card = document.createElement('div');
+      card.classList.add('movie-card');
+      
+      const title = movie.title || movie.name; // movie.title for movies, name for TV shows
+      const rating = movie.vote_average.toFixed(1); // Average rating
+
+      card.innerHTML = `
+        <img src="${IMG_URL + movie.poster_path}" alt="${title}" />
+        <div class="movie-info">
+          <h4 class="movie-title">${title}</h4>
+          <p class="movie-rating">⭐ ${rating}/10</p>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  showTrendingMovies();
+</script>
+
 
     async function fetchTrending(type) {
       const res = await fetch(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
