@@ -1,3 +1,4 @@
+// Informational Popups
 function showDisclaimer() {
   alert("Disclaimer: This website is for educational use only.");
 }
@@ -6,17 +7,20 @@ function showAboutUs() {
   alert("About Us: We provide trending movies and TV shows. ( Owner: CrisTzy )");
 }
 
+// Constants
 const API_KEY = 'bbf34609e2d5c182ec31e6c323fb55ca';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
 
+// Fetch trending movies or TV shows
 async function fetchTrending(type) {
   const res = await fetch(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
   const data = await res.json();
   return data.results;
 }
 
+// Fetch trending anime (Japanese language & genre ID 16)
 async function fetchTrendingAnime() {
   let allResults = [];
 
@@ -32,11 +36,13 @@ async function fetchTrendingAnime() {
   return allResults;
 }
 
+// Display banner background and title
 function displayBanner(item) {
   document.getElementById('banner').style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
   document.getElementById('banner-title').textContent = item.title || item.name;
 }
 
+// Render a list of movies or shows in a container
 function displayList(items, containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
@@ -64,6 +70,7 @@ function displayList(items, containerId) {
   });
 }
 
+// Show detailed modal
 function showDetails(item) {
   currentItem = item;
   document.getElementById('modal-title').textContent = item.title || item.name;
@@ -74,6 +81,7 @@ function showDetails(item) {
   document.getElementById('modal').style.display = 'flex';
 }
 
+// Change streaming embed based on server
 function changeServer() {
   const server = document.getElementById('server').value;
   const type = currentItem.media_type === "movie" ? "movie" : "tv";
@@ -90,21 +98,25 @@ function changeServer() {
   document.getElementById('modal-video').src = embedURL;
 }
 
+// Close modal and clear video
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
   document.getElementById('modal-video').src = '';
 }
 
+// Open search modal
 function openSearchModal() {
   document.getElementById('search-modal').style.display = 'flex';
   document.getElementById('search-input').focus();
 }
 
+// Close search modal
 function closeSearchModal() {
   document.getElementById('search-modal').style.display = 'none';
   document.getElementById('search-results').innerHTML = '';
 }
 
+// TMDB search function
 async function searchTMDB() {
   const query = document.getElementById('search-input').value;
   if (!query.trim()) {
@@ -130,6 +142,7 @@ async function searchTMDB() {
   });
 }
 
+// Initialization on page load
 async function init() {
   const movies = await fetchTrending('movie');
   const tvShows = await fetchTrending('tv');
