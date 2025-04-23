@@ -306,3 +306,18 @@ body { font-family: Arial, sans-serif; background: #111; color: #fff; }
   color: #ffcc00;
   text-align: center;
 }
+
+.list.collapsed {
+  max-height: 250px;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.see-more {
+  color: #1e90ff;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  float: right;
+  margin-top: -30px;
+}
