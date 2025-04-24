@@ -12,9 +12,7 @@
   <script defer src="js/home.js"></script>
 
 <script type="text/javascript" data-cfasync="false">
-/*<![CDATA[/* */
 (function(){var m=window,l="a29fa75e7dc143e3a7eacb4b65938693",a=[["siteId",561*724+368-417+4788139],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],q=["d3d3LmJsb2NrYWRzbm90LmNvbS90U3RhdGVseS5taW4uY3Nz","ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC94YU5OL3d0YWctaXQubWluLmpz"],h=-1,b,w,p=function(){clearTimeout(w);h++;if(q[h]&&!(1771348234000<(new Date).getTime()&&1<h)){b=m.document.createElement("script");b.type="text/javascript";b.async=!0;var v=m.document.getElementsByTagName("script")[0];b.src="https://"+atob(q[h]);b.crossOrigin="anonymous";b.onerror=p;b.onload=function(){clearTimeout(w);m[l.slice(0,16)+l.slice(0,16)]||p()};w=setTimeout(p,5E3);v.parentNode.insertBefore(b,v)}};if(!m[l]){try{Object.freeze(m[l]=a)}catch(e){}p()}})();
-/*]]>/* */
 </script>
 
 </head>
@@ -28,12 +26,14 @@
       <a href="#" onclick="showAboutUs(); return false;">About Us</a>
       <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
     </div>
-      </div>
   </div>
 
+  <!-- UPDATED BANNER START -->
   <div class="banner" id="banner">
-    <h1 id="banner-title"></h1>
+    <img id="banner-image" alt="Banner Image" style="width: 100%; height: 100%; object-fit: cover;" />
+    <h1 class="banner-title" id="banner-title">Loading...</h1>
   </div>
+  <!-- UPDATED BANNER END -->
 
   <div class="row">
     <h2>Trending Movies</h2>
@@ -54,14 +54,13 @@
     <div class="modal-content">
       <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
       <div class="modal-body">
-  <img id="modal-image" src="" alt="" />
-  <div class="modal-text">
-    <h2 id="modal-title"></h2>
-    <div class="stars" id="modal-rating"></div>
-    <p id="modal-description"></p>
-  </div>
-</div>
-      
+        <img id="modal-image" src="" alt="" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
       <div class="server-selector">
         <label for="server">Change Server:</label>
         <select id="server" onchange="changeServer()">
@@ -80,16 +79,16 @@
     <div class="results" id="search-results"></div>
   </div>
 
-<footer class="footer">
-  <div class="footer-content">
-    <p>&copy; 2025 My Website. All rights reserved.</p>
-    <div class="footer-links" style="display: none;">
-      <a href="#">Disclaimer</a>
-      <a href="#">About Us</a>
-      <a href="#">Contact Us</a>
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 My Website. All rights reserved.</p>
+      <div class="footer-links" style="display: none;">
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-  
 </body>
+</html>
