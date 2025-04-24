@@ -1,11 +1,9 @@
-/* ✨ CSS RESET + ROOT COLORS ✨ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --accent-color: #e50914; /* Netflix-style red */
 }
 
-/* EXISTING CSS BELOW */
 body {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(10, 10, 10, 0.95)),
