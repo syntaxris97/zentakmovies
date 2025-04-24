@@ -167,3 +167,30 @@ async function init() {
 }
 
 init();
+
+
+// ✨ Basic Frontend Protection Script
+
+// Disable right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Disable certain key combinations
+document.addEventListener('keydown', e => {
+  if (
+    e.ctrlKey && (
+      e.key === 'u' ||         // Ctrl + U (View source)
+      e.key === 's' ||         // Ctrl + S (Save page)
+      e.key === 'c' ||         // Ctrl + C (Copy)
+      e.key === 'x' ||         // Ctrl + X (Cut)
+      e.key === 'i' ||         // Ctrl + Shift + I (Dev Tools)
+      e.key === 'j' ||         // Ctrl + Shift + J (Console)
+      e.key === 'k' ||         // Ctrl + Shift + K (Firefox Dev Tools)
+      e.key === 'F12'          // F12 (Dev Tools)
+    )
+  ) {
+    e.preventDefault();
+  }
+});
+
+// Block drag events (to avoid dragging images)
+document.addEventListener('dragstart', e => e.preventDefault());
