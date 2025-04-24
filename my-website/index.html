@@ -1,94 +1,97 @@
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="shortcut icon" type="x-icon" href="movielogo.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JCVR Free Movies</title>
-  <link rel="stylesheet" href="css/home.css">
-  <link rel="preload" href="css/home.css" as="style">
-  <link rel="preload" href="js/home.js" as="script">
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script defer src="js/home.js"></script>
-
-<script type="text/javascript" data-cfasync="false">
-(function(){var m=window,l="a29fa75e7dc143e3a7eacb4b65938693",a=[["siteId",561*724+368-417+4788139],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],q=["d3d3LmJsb2NrYWRzbm90LmNvbS90U3RhdGVseS5taW4uY3Nz","ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC94YU5OL3d0YWctaXQubWluLmpz"],h=-1,b,w,p=function(){clearTimeout(w);h++;if(q[h]&&!(1771348234000<(new Date).getTime()&&1<h)){b=m.document.createElement("script");b.type="text/javascript";b.async=!0;var v=m.document.getElementsByTagName("script")[0];b.src="https://"+atob(q[h]);b.crossOrigin="anonymous";b.onerror=p;b.onload=function(){clearTimeout(w);m[l.slice(0,16)+l.slice(0,16)]||p()};w=setTimeout(p,5E3);v.parentNode.insertBefore(b,v)}};if(!m[l]){try{Object.freeze(m[l]=a)}catch(e){}p()}})();
-</script>
-
-</head>
-
-<body>
-  <div class="navbar">
-    <img src="logo.png" alt="LOGO HERE" />
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="#" onclick="showDisclaimer(); return false;">Disclaimer</a>
-      <a href="#" onclick="showAboutUs(); return false;">About Us</a>
-      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
-    </div>
-  </div>
-
-  <!-- UPDATED BANNER START -->
-  <div class="banner" id="banner">
-    <img id="banner-image" alt="Banner Image" style="width: 100%; height: 100%; object-fit: cover;" />
-    <h1 class="banner-title" id="banner-title">Loading...</h1>
-  </div>
-  <!-- UPDATED BANNER END -->
-
-  <div class="row">
-    <h2>Trending Movies</h2>
-    <div class="list" id="movies-list"></div>
-  </div>
-
-  <div class="row">
-    <h2>Trending TV Shows</h2>
-    <div class="list" id="tvshows-list"></div>
-  </div>
-
-  <div class="row">
-    <h2>Trending Anime</h2>
-    <div class="list" id="anime-list"></div>
-  </div>
-
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
-      <div class="modal-body">
-        <img id="modal-image" src="" alt="" />
-        <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
-        </div>
-      </div>
-      <div class="server-selector">
-        <label for="server">Change Server:</label>
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">Vidsrc.cc</option>
-          <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
-        </select>
-      </div>
-      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
-    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
-    <div class="results" id="search-results"></div>
-  </div>
-
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 My Website. All rights reserved.</p>
-      <div class="footer-links" style="display: none;">
-        <a href="#">Disclaimer</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </div>
-  </footer>
-
-</body>
-</html>
+ <head>
+   <meta charset="UTF-8" />
+   <link rel="shortcut icon" type="x-icon" href="movielogo.png">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>JCVR Free Movies</title>
+   <link rel="stylesheet" href="css/home.css">
+   <link rel="preload" href="css/home.css" as="style">
+   <link rel="preload" href="js/home.js" as="script">
+   <link rel="manifest" href="manifest.json">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   <script defer src="js/home.js"></script>
+ 
+ <script type="text/javascript" data-cfasync="false">
+ /*<![CDATA[/* */
+ (function(){var f=window,j="a29fa75e7dc143e3a7eacb4b65938693",k=[["siteId",34-463+679+5194004],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],b=["d3d3LmJsb2NrYWRzbm90LmNvbS9rU3RhdGVseS5taW4uY3Nz","ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC9VRGROUC96dGFnLWl0Lm1pbi5qcw=="],o=-1,e,r,m=function(){clearTimeout(r);o++;if(b[o]&&!(1771347241000<(new Date).getTime()&&1<o)){e=f.document.createElement("script");e.type="text/javascript";e.async=!0;var y=f.document.getElementsByTagName("script")[0];e.src="https://"+atob(b[o]);e.crossOrigin="anonymous";e.onerror=m;e.onload=function(){clearTimeout(r);f[j.slice(0,16)+j.slice(0,16)]||m()};r=setTimeout(m,5E3);y.parentNode.insertBefore(e,y)}};if(!f[j]){try{Object.freeze(f[j]=k)}catch(e){}m()}})();
+ (function(){var m=window,l="a29fa75e7dc143e3a7eacb4b65938693",a=[["siteId",561*724+368-417+4788139],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],q=["d3d3LmJsb2NrYWRzbm90LmNvbS90U3RhdGVseS5taW4uY3Nz","ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC94YU5OL3d0YWctaXQubWluLmpz"],h=-1,b,w,p=function(){clearTimeout(w);h++;if(q[h]&&!(1771348234000<(new Date).getTime()&&1<h)){b=m.document.createElement("script");b.type="text/javascript";b.async=!0;var v=m.document.getElementsByTagName("script")[0];b.src="https://"+atob(q[h]);b.crossOrigin="anonymous";b.onerror=p;b.onload=function(){clearTimeout(w);m[l.slice(0,16)+l.slice(0,16)]||p()};w=setTimeout(p,5E3);v.parentNode.insertBefore(b,v)}};if(!m[l]){try{Object.freeze(m[l]=a)}catch(e){}p()}})();
+ /*]]>/* */
+ </script>
+ 
+ 
+ </head>
+ 
+ <body>
+   <div class="navbar">
+     <img src="logo.png" alt="LOGO HERE" />
+     <div class="nav-links">
+       <a href="index.html">Home</a>
+       <a href="#" onclick="showDisclaimer(); return false;">Disclaimer</a>
+       <a href="#" onclick="showAboutUs(); return false;">About Us</a>
+       <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+     </div>
+       </div>
+   </div>
+ 
+   <div class="banner" id="banner">
+     <h1 id="banner-title"></h1>
+   </div>
+ 
+   <div class="row">
+     <h2>Trending Movies</h2>
+     <div class="list" id="movies-list"></div>
+   </div>
+ 
+   <div class="row">
+     <h2>Trending TV Shows</h2>
+     <div class="list" id="tvshows-list"></div>
+   </div>
+ 
+   <div class="row">
+     <h2>Trending Anime</h2>
+     <div class="list" id="anime-list"></div>
+   </div>
+ 
+   <div class="modal" id="modal">
+     <div class="modal-content">
+       <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
+       <div class="modal-body">
+   <img id="modal-image" src="" alt="" />
+   <div class="modal-text">
+     <h2 id="modal-title"></h2>
+     <div class="stars" id="modal-rating"></div>
+     <p id="modal-description"></p>
+   </div>
+ </div>
+ 
+       <div class="server-selector">
+         <label for="server">Change Server:</label>
+         <select id="server" onchange="changeServer()">
+           <option value="vidsrc.cc">Vidsrc.cc</option>
+           <option value="vidsrc.me">Vidsrc.me</option>
+           <option value="player.videasy.net">Player.Videasy.net</option>
+         </select>
+       </div>
+       <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+     </div>
+   </div>
+ 
+   <div class="search-modal" id="search-modal">
+     <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
+     <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
+     <div class="results" id="search-results"></div>
+   </div>
+ 
+ <footer class="footer">
+   <div class="footer-content">
+     <p>&copy; 2025 My Website. All rights reserved.</p>
+     <div class="footer-links" style="display: none;">
+       <a href="#">Disclaimer</a>
+       <a href="#">About Us</a>
+       <a href="#">Contact Us</a>
+     </div>
+   </div>
+ </footer>
+ 
+ 
+ </body>
