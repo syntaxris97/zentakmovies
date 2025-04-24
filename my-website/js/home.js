@@ -13,6 +13,9 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
 
+let bannerIndex = 0;
+let bannerItems = [];
+
 // Fetch trending movies or TV shows
 async function fetchTrending(type) {
   const res = await fetch(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
@@ -40,6 +43,15 @@ async function fetchTrendingAnime() {
 function displayBanner(item) {
   document.getElementById('banner').style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
   document.getElementById('banner-title').textContent = item.title || item.name;
+}
+
+function startBannerRotation(items) {
+  bannerItems = items;
+  displayBanner(bannerItems[bannerIndex]);
+  setInterval(() => {
+    bannerIndex = (bannerIndex + 1) % bannerItems.length;
+    displayBanner(bannerItems[bannerIndex]);
+  }, 5000);
 }
 
 // Render a list of movies or shows in a container
@@ -148,7 +160,7 @@ async function init() {
   const tvShows = await fetchTrending('tv');
   const anime = await fetchTrendingAnime();
 
-  displayBanner(movies[Math.floor(Math.random() * movies.length)]);
+  startBannerRotation(movies);
   displayList(movies, 'movies-list');
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
