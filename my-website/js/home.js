@@ -67,7 +67,7 @@ function displayList(items, containerId) {
     img.alt = item.title || item.name;
     img.onclick = () => {
       const type = item.media_type || (containerId.includes("movie") ? "movie" : "tv");
-      window.open(`watch.html?type=${type}&id=${item.id}`, "_blank");
+      window.location.href = `watch.html?type=${type}&id=${item.id}`;
     };
 
     const title = document.createElement('div');
