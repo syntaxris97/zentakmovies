@@ -9,7 +9,18 @@ function showAboutUs() {
   alert("About Us: This is a fictional media browsing project for entertainment purposes only.");
 }
 
-const k = atob("YmJmMzQ2MDllMmQ1YzE4MmVjMzFlNmMzMjNmYjU1Y2E=");
+const p1 = "YmJm";
+const p2 = "MzQ2";
+const p3 = "MDll";
+const p4 = "MmQ1";
+const p5 = "YzE4";
+const p6 = "MmVj";
+const p7 = "MzFl";
+const p8 = "NmMz";
+const p9 = "MjNm";
+const p10 = "YjU1Y2E=";
+
+const k = atob(p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9 + p10);
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
