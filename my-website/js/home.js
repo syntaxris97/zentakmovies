@@ -1,13 +1,14 @@
+// ✅ Updated JS Code with Correct Syntax + Stealth Embed
+
 // Informational Popups
 function showDisclaimer() {
-  alert("Disclaimer: This website is for educational use only.");
+  alert("Disclaimer: This website does not host or upload any videos. All content is provided via third-party embeds.");
 }
 
 function showAboutUs() {
-  alert("About Us: We provide trending movies and TV shows. ( Owner: CrisTzy )");
+  alert("About Us: This is a fictional media browsing project for entertainment purposes only.");
 }
 
-// Constants
 const API_KEY = 'bbf34609e2d5c182ec31e6c323fb55ca';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
@@ -16,17 +17,14 @@ let currentItem;
 let bannerIndex = 0;
 let bannerItems = [];
 
-// Fetch trending movies or TV shows
 async function fetchTrending(type) {
   const res = await fetch(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
   const data = await res.json();
   return data.results;
 }
 
-// Fetch trending anime (Japanese language & genre ID 16)
 async function fetchTrendingAnime() {
   let allResults = [];
-
   for (let page = 1; page <= 3; page++) {
     const res = await fetch(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}&page=${page}`);
     const data = await res.json();
@@ -35,11 +33,9 @@ async function fetchTrendingAnime() {
     );
     allResults = allResults.concat(filtered);
   }
-
   return allResults;
 }
 
-// Display banner background and title
 function displayBanner(item) {
   document.getElementById('banner').style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
   document.getElementById('banner-title').textContent = item.title || item.name;
@@ -54,7 +50,6 @@ function startBannerRotation(items) {
   }, 5000);
 }
 
-// Render a list of movies or shows in a container
 function displayList(items, containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
@@ -82,53 +77,51 @@ function displayList(items, containerId) {
   });
 }
 
-// Show detailed modal
 function showDetails(item) {
   currentItem = item;
   document.getElementById('modal-title').textContent = item.title || item.name;
   document.getElementById('modal-description').textContent = item.overview;
   document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2));
-  changeServer();
   document.getElementById('modal').style.display = 'flex';
+  document.getElementById('video-frame').innerHTML = ''; // Clear previous video
 }
 
-// Change streaming embed based on server
-function changeServer() {
+function loadPlayer() {
   const server = document.getElementById('server').value;
   const type = currentItem.media_type === "movie" ? "movie" : "tv";
+  const id = currentItem.id;
   let embedURL = "";
 
   if (server === "vidsrc.cc") {
-    embedURL = `https://vidsrc.cc/v2/embed/${type}/${currentItem.id}`;
+    embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
   } else if (server === "vidsrc.me") {
-    embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${currentItem.id}`;
+    embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
   } else if (server === "player.videasy.net") {
-    embedURL = `https://player.videasy.net/${type}/${currentItem.id}`;
+    embedURL = `https://player.videasy.net/${type}/${id}`;
   }
 
-  document.getElementById('modal-video').src = embedURL;
+  setTimeout(() => {
+    document.getElementById('video-frame').innerHTML =
+      `<iframe src="${embedURL}" width="100%" height="315" frameborder="0" allowfullscreen></iframe>`;
+  }, 800);
 }
 
-// Close modal and clear video
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
-  document.getElementById('modal-video').src = '';
+  document.getElementById('video-frame').innerHTML = '';
 }
 
-// Open search modal
 function openSearchModal() {
   document.getElementById('search-modal').style.display = 'flex';
   document.getElementById('search-input').focus();
 }
 
-// Close search modal
 function closeSearchModal() {
   document.getElementById('search-modal').style.display = 'none';
   document.getElementById('search-results').innerHTML = '';
 }
 
-// TMDB search function
 async function searchTMDB() {
   const query = document.getElementById('search-input').value;
   if (!query.trim()) {
@@ -154,7 +147,6 @@ async function searchTMDB() {
   });
 }
 
-// Initialization on page load
 async function init() {
   const movies = await fetchTrending('movie');
   const tvShows = await fetchTrending('tv');
@@ -168,29 +160,15 @@ async function init() {
 
 init();
 
-
-// ✨ Basic Frontend Protection Script
-
-// Disable right-click
 document.addEventListener('contextmenu', e => e.preventDefault());
-
-// Disable certain key combinations
 document.addEventListener('keydown', e => {
   if (
     e.ctrlKey && (
-      e.key === 'u' ||         // Ctrl + U (View source)
-      e.key === 's' ||         // Ctrl + S (Save page)
-      e.key === 'c' ||         // Ctrl + C (Copy)
-      e.key === 'x' ||         // Ctrl + X (Cut)
-      e.key === 'i' ||         // Ctrl + Shift + I (Dev Tools)
-      e.key === 'j' ||         // Ctrl + Shift + J (Console)
-      e.key === 'k' ||         // Ctrl + Shift + K (Firefox Dev Tools)
-      e.key === 'F12'          // F12 (Dev Tools)
+      ['u', 's', 'c', 'x', 'i', 'j', 'k'].includes(e.key.toLowerCase()) ||
+      e.key === 'F12'
     )
   ) {
     e.preventDefault();
   }
 });
-
-// Block drag events (to avoid dragging images)
 document.addEventListener('dragstart', e => e.preventDefault());
