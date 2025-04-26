@@ -65,10 +65,7 @@ function displayList(items, containerId) {
     const img = document.createElement('img');
     img.src = `${IMG_URL}${item.poster_path}`;
     img.alt = item.title || item.name;
-    img.onclick = () => {
-      const type = item.media_type || (containerId.includes("movie") ? "movie" : "tv");
-      window.location.href = `watch.html?type=${type}&id=${item.id}`;
-    };
+    img.onclick = () => showDetails(item);
 
     const title = document.createElement('div');
     title.classList.add('movie-title');
