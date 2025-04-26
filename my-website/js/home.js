@@ -26,7 +26,7 @@ async function fetchTrending(type) {
 async function fetchTrendingAnime() {
   let allResults = [];
   for (let page = 1; page <= 3; page++) {
-    const res = await fetch(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}&page=${page}`);
+    const res = await fetch(`${BASE_URL}/trending/tv/week?api_key=${k}&page=${page}`);
     const data = await res.json();
     const filtered = data.results.filter(item =>
       item.original_language === 'ja' && item.genre_ids.includes(16)
@@ -129,7 +129,7 @@ async function searchTMDB() {
     return;
   }
 
-  const res = await fetch(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}`);
+  const res = await fetch(`${BASE_URL}/search/multi?api_key=${k}&query=${query}`);
   const data = await res.json();
 
   const container = document.getElementById('search-results');
