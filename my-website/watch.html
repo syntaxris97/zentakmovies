@@ -1,0 +1,46 @@
+<!-- watch.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Watch Movie</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    iframe {
+      width: 90%;
+      height: 90vh;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <iframe id="video-frame" allowfullscreen></iframe>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type');
+    const id = urlParams.get('id');
+    const server = urlParams.get('server') || 'vidsrc.cc';
+
+    let embedURL = '';
+    if (server === "vidsrc.cc") {
+      embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
+    } else if (server === "vidsrc.me") {
+      embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
+    } else if (server === "player.videasy.net") {
+      embedURL = `https://player.videasy.net/${type}/${id}`;
+    }
+
+    document.getElementById('video-frame').src = embedURL;
+  </script>
+</body>
+</html>
