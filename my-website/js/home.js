@@ -1,10 +1,5 @@
 // ✅ FULLY UPDATED home.js with Stealth Mode
 
-// Informational Popups
-function showAboutUs() {
-  alert("About Us: This is a fictional media browsing project for entertainment purposes only.");
-}
-
 // Bot Detection: If bot detected -> redirect to safe.html
 const botKeywords = [
   "googlebot", "bingbot", "slurp", "duckduckbot", "baiduspider", "yandex", "ahrefsbot", "semrushbot", "mj12bot", "dotbot", "gigabot"
