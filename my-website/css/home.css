@@ -135,7 +135,6 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* ➡️ New Modal Scroll Smoother */
 .modal-content::-webkit-scrollbar {
   width: 8px;
 }
@@ -234,6 +233,44 @@ body {
 }
 .footer a:hover {
   color: var(--accent-color);
+}
+
+/* Watch Now Button + Server Selector */
+.watch-btn {
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.watch-btn:hover {
+  background-color: #b2060f;
+}
+
+.server-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  gap: 10px;
+}
+
+.server-selector label {
+  font-size: 16px;
+}
+
+.server-selector select {
+  padding: 8px;
+  border-radius: 5px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #333;
 }
 
 /* Responsive */
