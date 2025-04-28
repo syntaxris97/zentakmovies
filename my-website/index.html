@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>ZentakMovies - Watch Free Movies</title>
-  <link rel="stylesheet" href="./home.css">
-  <link rel="icon" type="image/png" href="./logo.png">
-  <script src="./home.js" defer></script> <!-- Corrected path -->
+  <link rel="stylesheet" href="home.css">
+  <link rel="icon" type="image/png" href="logo.png">
 </head>
 
 <body>
   <div id="landing">
-    <img src="./movielogo.png" alt="ZentakMovies" class="logo">
+    <img src="movielogo.png" alt="ZentakMovies" class="logo">
     <h1>Welcome to the Home of Movies</h1>
     <p>Thousands of Movies. Zero Limits. Click to Unlock 🎬</p>
     <button id="enterButton">Enter Now</button>
@@ -24,7 +23,7 @@
     </header>
 
     <section id="movies">
-      <!-- Movies will load dynamically here -->
+      <!-- Movies will be loaded dynamically -->
     </section>
 
     <footer>
@@ -32,5 +31,7 @@
     </footer>
   </div>
 
+  <!-- 🛠️ Correct: Load home.js AFTER HTML is loaded -->
+  <script src="home.js"></script>
 </body>
 </html>
