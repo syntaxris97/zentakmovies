@@ -1,4 +1,4 @@
-// ✅ FULLY UPDATED home.js with Stealth Mode
+// ✅ FULLY UPDATED home.js with Stealth Mode + Modals support
 
 // Bot Detection: If bot detected -> redirect to safe.html
 const botKeywords = [
@@ -122,9 +122,11 @@ function loadPlayer() {
   }, 800);
 }
 
-function closeModal() {
-  document.getElementById('modal').style.display = 'none';
-  document.getElementById('video-frame').innerHTML = '';
+function closeModal(modalId = 'modal') {
+  document.getElementById(modalId).style.display = 'none';
+  if (modalId === 'modal') {
+    document.getElementById('video-frame').innerHTML = '';
+  }
 }
 
 function openSearchModal() {
@@ -162,6 +164,14 @@ async function searchTMDB() {
   });
 }
 
+function showTerms() {
+  document.getElementById('termsModal').style.display = 'flex';
+}
+
+function showDisclaimer() {
+  document.getElementById('disclaimerModal').style.display = 'flex';
+}
+
 async function init() {
   const movies = await fetchTrending('movie');
   const tvShows = await fetchTrending('tv');
@@ -175,6 +185,7 @@ async function init() {
 
 init();
 
+// Prevent right-click and shortcut keys for extra stealth
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('keydown', e => {
   if (
