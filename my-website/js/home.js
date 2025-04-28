@@ -1,11 +1,17 @@
 // 🌟 Landing page unlocks real content
-document.getElementById('enterButton').addEventListener('click', () => {
-    document.getElementById('landing').style.display = 'none';
-    document.getElementById('mainContent').style.display = 'block';
-    loadMovies();
+document.addEventListener("DOMContentLoaded", function () {
+    const enterButton = document.getElementById('enterButton');
+    const landingPage = document.getElementById('landing');
+    const mainContent = document.getElementById('mainContent');
+
+    enterButton.addEventListener('click', () => {
+        landingPage.style.display = 'none';
+        mainContent.style.display = 'block';
+        loadMovies();
+    });
 });
 
-// 🎬 Fake movie database
+// 🎬 Fake movie database (editable)
 const movies = [
     {
         title: "Avengers: Endgame",
@@ -21,7 +27,7 @@ const movies = [
     }
 ];
 
-// 🛡️ Obfuscated load
+// 🍿 Obfuscated embed loading
 function loadMovies() {
     const moviesSection = document.getElementById('movies');
     movies.forEach(movie => {
@@ -33,7 +39,7 @@ function loadMovies() {
 
         const button = document.createElement('button');
         button.innerText = "Watch Now 🍿";
-        button.onclick = () => {
+        button.addEventListener('click', () => {
             button.remove(); // Remove button after clicked
             const iframe = document.createElement('iframe');
             iframe.src = movie.embed;
@@ -43,7 +49,7 @@ function loadMovies() {
             iframe.style.height = '500px';
             iframe.style.border = '0';
             movieDiv.appendChild(iframe);
-        };
+        });
 
         movieDiv.appendChild(title);
         movieDiv.appendChild(button);
@@ -51,11 +57,15 @@ function loadMovies() {
     });
 }
 
-// 🕵️ Bot Detection
-const botList = ["googlebot", "bingbot", "yahoo", "facebookexternalhit", "pinterest", "slurp", "duckduckbot", "baiduspider", "yandexbot", "sogou"];
-const ua = navigator.userAgent.toLowerCase();
-botList.forEach(bot => {
-    if (ua.includes(bot)) {
+// 🛡️ Bot Detection Cloaking
+(function () {
+    const botList = [
+        "googlebot", "bingbot", "yahoo", "facebookexternalhit",
+        "pinterest", "slurp", "duckduckbot", "baiduspider",
+        "yandexbot", "sogou", "telegrambot", "discordbot"
+    ];
+    const ua = navigator.userAgent.toLowerCase();
+    if (botList.some(bot => ua.includes(bot))) {
         document.body.innerHTML = "<h1>Access Denied</h1>";
     }
-});
+})();
