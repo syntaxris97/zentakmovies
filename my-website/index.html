@@ -1,37 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>ZentakMovies - Watch Free Movies</title>
-  <link rel="stylesheet" href="home.css">
-  <link rel="icon" type="image/png" href="logo.png">
+  <title>CineHubFlixer</title>
+  <link rel="shortcut icon" type="image/x-icon" href="movielogo.png">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="preload" href="css/home.css" as="style">
+  <link rel="preload" href="js/home.js" as="script">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script defer src="js/home.js"></script>
 </head>
-
 <body>
-  <div id="landing">
-    <img src="movielogo.png" alt="ZentakMovies" class="logo">
-    <h1>Welcome to the Home of Movies</h1>
-    <p>Thousands of Movies. Zero Limits. Click to Unlock 🎬</p>
-    <button id="enterButton">Enter Now</button>
+  <div class="navbar">
+    <img src="logo.png" alt="LOGO HERE" />
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#" onclick="showDisclaimer(); return false;">Disclaimer</a>
+      <a href="#" onclick="showAboutUs(); return false;">About Us</a>
+      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+    </div>
   </div>
 
-  <div id="mainContent" style="display: none;">
-    <header>
-      <h1>ZentakMovies</h1>
-    </header>
-
-    <section id="movies">
-      <!-- Movies will be loaded dynamically -->
-    </section>
-
-    <footer>
-      <p>© 2025 ZentakMovies. All rights reserved. | <a href="terms.html">Terms & Conditions</a></p>
-    </footer>
+  <div class="banner" id="banner">
+    <h1 id="banner-title"></h1>
   </div>
 
-  <!-- 🛠️ Correct: Load home.js AFTER HTML is loaded -->
-  <script src="home.js"></script>
+  <div class="row">
+    <h2>Trending Movies</h2>
+    <div class="list" id="movies-list"></div>
+  </div>
+
+  <div class="row">
+    <h2>Trending TV Shows</h2>
+    <div class="list" id="tvshows-list"></div>
+  </div>
+
+  <div class="row">
+    <h2>Trending Anime</h2>
+    <div class="list" id="anime-list"></div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+      </div>
+      <button onclick="loadPlayer()" class="watch-btn">Watch Now</button>
+      <div id="video-frame"></div>
+    </div>
+  </div>
+
+  <div class="search-modal" id="search-modal">
+    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
+    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
+    <div class="results" id="search-results"></div>
+  </div>
+
+    <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 CineHubFlixer. This site does not host or upload any video content. All content is provided via external sources.</p>
+    </div>
+  </footer>
+
+  <!-- ✅ TEST BUTTON for PopAds (Hidden + Toggleable) -->
+  <div id="popads-test" style="text-align:center; margin: 30px 40px; display: none;">
+    <button onclick="window.open('https://example.com', '_blank')" style="padding: 12px 24px; font-size: 16px; border-radius: 8px; background: #222; color: #fff; border: none;">
+      🔥 Test PopAd Trigger
+    </button>
+  </div>
+
+<script type="text/javascript" data-cfasync="false">
+//<![CDATA[
+(function(){
+  var d = window,
+      k = "a29fa75e7dc143e3a7eacb4b65938693",
+      l = [
+        ["siteId", 12 * 468 * 267 + 227 + 523 + 3694032],
+        ["minBid", 0],
+        ["popundersPerIP", "0"],
+        ["delayBetween", 0],
+        ["default", false],
+        ["defaultPerDay", 0],
+        ["topmostLayer", "auto"]
+      ],
+      w = [
+        "d3d3LmJsb2NrYWRzbm90LmNvbS9tU3RhdGVseS5taW4uY3Nz",
+        "ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC9XSC9vdGFnLWl0Lm1pbi5qcw=="
+      ],
+      a = -1, j, f;
+
+  var z = function(){
+    clearTimeout(f);
+    a++;
+    if (w[a] && !(1771552329000 < (new Date).getTime() && a > 1)) {
+      j = d.document.createElement("script");
+      j.type = "text/javascript";
+      j.async = true;
+      j.src = "https://" + atob(w[a]);
+      j.crossOrigin = "anonymous";
+      j.onerror = z;
+      j.onload = function(){
+        clearTimeout(f);
+        if (!d[k.slice(0,16)+k.slice(0,16)]) z();
+      };
+      var s = d.document.getElementsByTagName("script")[0];
+      f = setTimeout(z, 5000);
+      s.parentNode.insertBefore(j, s);
+    }
+  };
+
+  if (!d[k]) {
+    try { Object.freeze(d[k] = l); } catch (e) {}
+    z();
+  }
+})();
+//]]>
+</script>
+
+<script>
+// OPTIONAL: Press Ctrl + Shift + T to toggle test button
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 't') {
+    const testDiv = document.getElementById('popads-test');
+    testDiv.style.display = testDiv.style.display === 'none' ? 'block' : 'none';
+  }
+});
+</script>
+
 </body>
 </html>
