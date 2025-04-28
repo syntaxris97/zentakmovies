@@ -1,10 +1,6 @@
 // ✅ FULLY UPDATED home.js with Stealth Mode
 
 // Informational Popups
-function showDisclaimer() {
-  alert("Disclaimer: This website does not host or upload any videos. All content is provided via third-party embeds.");
-}
-
 function showAboutUs() {
   alert("About Us: This is a fictional media browsing project for entertainment purposes only.");
 }
