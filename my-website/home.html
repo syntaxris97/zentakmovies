@@ -75,11 +75,29 @@
 <footer class="footer">
   <div class="footer-content">
     <p>&copy; 2025 CineHubFlixer. This site does not host or upload any videos. All content is provided by third-party services.</p>
-    <p><a href="terms.html" style="color: #ccc; text-decoration: underline;">Terms & Conditions</a> | <a href="disclaimer.html" style="color: #ccc; text-decoration: underline;">Disclaimer</a></p>
+    <p>
+      <a href="#" onclick="showTerms(); return false;" style="color: #ccc; text-decoration: underline;">Terms & Conditions</a> |
+      <a href="#" onclick="showDisclaimer(); return false;" style="color: #ccc; text-decoration: underline;">Disclaimer</a>
+    </p>
   </div>
 </footer>
 
+<!-- Hidden Modals -->
+<div id="termsModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('termsModal')">&times;</span>
+    <h2>Terms & Conditions</h2>
+    <p>This website does not host any media files. Content is provided by non-affiliated third parties. Use at your own risk.</p>
+  </div>
+</div>
+
+<div id="disclaimerModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('disclaimerModal')">&times;</span>
+    <h2>Disclaimer</h2>
+    <p>All trademarks and copyrights belong to their respective owners. This site only contains links to external content.</p>
+  </div>
+</div>
+
 </body>
 </html>
-
-
