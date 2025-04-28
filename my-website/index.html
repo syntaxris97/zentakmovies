@@ -1,185 +1,148 @@
-// ✅ Updated JS Code with Correct Syntax + Stealth Embed
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>CineHubFlixer</title>
+  <link rel="shortcut icon" type="image/x-icon" href="movielogo.png">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="preload" href="css/home.css" as="style">
+  <link rel="preload" href="js/home.js" as="script">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script defer src="js/home.js"></script>
+</head>
+<body>
+  <div class="navbar">
+    <img src="logo.png" alt="LOGO HERE" />
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#" onclick="showDisclaimer(); return false;">Disclaimer</a>
+      <a href="#" onclick="showAboutUs(); return false;">About Us</a>
+      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+    </div>
+  </div>
 
-// Informational Popups
-function showDisclaimer() {
-  alert("Disclaimer: This website does not host or upload any videos. All content is provided via third-party embeds.");
-}
+  <div class="banner" id="banner">
+    <h1 id="banner-title"></h1>
+  </div>
 
-function showAboutUs() {
-  alert("About Us: This is a fictional media browsing project for entertainment purposes only.");
-}
+  <div class="row">
+    <h2>Trending Movies</h2>
+    <div class="list" id="movies-list"></div>
+  </div>
 
-const p1 = "YmJm";
-const p2 = "MzQ2";
-const p3 = "MDll";
-const p4 = "MmQ1";
-const p5 = "YzE4";
-const p6 = "MmVj";
-const p7 = "MzFl";
-const p8 = "NmMz";
-const p9 = "MjNm";
-const p10 = "YjU1Y2E=";
+  <div class="row">
+    <h2>Trending TV Shows</h2>
+    <div class="list" id="tvshows-list"></div>
+  </div>
 
-const k = atob(p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9 + p10);
-const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_URL = 'https://image.tmdb.org/t/p/original';
-let currentItem;
+  <div class="row">
+    <h2>Trending Anime</h2>
+    <div class="list" id="anime-list"></div>
+  </div>
 
-let bannerIndex = 0;
-let bannerItems = [];
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+      </div>
+      <button onclick="loadPlayer()" class="watch-btn">Watch Now</button>
+      <div id="video-frame"></div>
+    </div>
+  </div>
 
-async function fetchTrending(type) {
-  const res = await fetch(`${BASE_URL}/trending/${type}/week?api_key=${k}`);
-  const data = await res.json();
-  return data.results;
-}
+  <div class="search-modal" id="search-modal">
+    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
+    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
+    <div class="results" id="search-results"></div>
+  </div>
 
-async function fetchTrendingAnime() {
-  let allResults = [];
-  for (let page = 1; page <= 3; page++) {
-    const res = await fetch(`${BASE_URL}/trending/tv/week?api_key=${k}&page=${page}`);
-    const data = await res.json();
-    const filtered = data.results.filter(item =>
-      item.original_language === 'ja' && item.genre_ids.includes(16)
-    );
-    allResults = allResults.concat(filtered);
+    <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 CineHubFlixer. This site does not host or upload any video content. All content is provided via external sources.</p>
+    </div>
+  </footer>
+
+  <!-- ✅ TEST BUTTON for PopAds (Hidden + Toggleable) -->
+  <div id="popads-test" style="text-align:center; margin: 30px 40px; display: none;">
+    <button onclick="window.open('https://example.com', '_blank')" style="padding: 12px 24px; font-size: 16px; border-radius: 8px; background: #222; color: #fff; border: none;">
+      🔥 Test PopAd Trigger
+    </button>
+  </div>
+
+<script type="text/javascript" data-cfasync="false">
+//<![CDATA[
+(function(){
+  var d = window,
+      k = "a29fa75e7dc143e3a7eacb4b65938693",
+      l = [
+        ["siteId", 12 * 468 * 267 + 227 + 523 + 3694032],
+        ["minBid", 0],
+        ["popundersPerIP", "0"],
+        ["delayBetween", 0],
+        ["default", false],
+        ["defaultPerDay", 0],
+        ["topmostLayer", "auto"]
+      ],
+      w = [
+        "d3d3LmJsb2NrYWRzbm90LmNvbS9tU3RhdGVseS5taW4uY3Nz",
+        "ZG5oZmk1bm4yZHQ2Ny5jbG91ZGZyb250Lm5ldC9XSC9vdGFnLWl0Lm1pbi5qcw=="
+      ],
+      a = -1, j, f;
+
+  var z = function(){
+    clearTimeout(f);
+    a++;
+    if (w[a] && !(1771552329000 < (new Date).getTime() && a > 1)) {
+      j = d.document.createElement("script");
+      j.type = "text/javascript";
+      j.async = true;
+      j.src = "https://" + atob(w[a]);
+      j.crossOrigin = "anonymous";
+      j.onerror = z;
+      j.onload = function(){
+        clearTimeout(f);
+        if (!d[k.slice(0,16)+k.slice(0,16)]) z();
+      };
+      var s = d.document.getElementsByTagName("script")[0];
+      f = setTimeout(z, 5000);
+      s.parentNode.insertBefore(j, s);
+    }
+  };
+
+  if (!d[k]) {
+    try { Object.freeze(d[k] = l); } catch (e) {}
+    z();
   }
-  return allResults;
-}
+})();
+//]]>
+</script>
 
-function displayBanner(item) {
-  document.getElementById('banner').style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
-  document.getElementById('banner-title').textContent = item.title || item.name;
-}
-
-function startBannerRotation(items) {
-  bannerItems = items;
-  displayBanner(bannerItems[bannerIndex]);
-  setInterval(() => {
-    bannerIndex = (bannerIndex + 1) % bannerItems.length;
-    displayBanner(bannerItems[bannerIndex]);
-  }, 5000);
-}
-
-function displayList(items, containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-  items.forEach(item => {
-    const card = document.createElement('div');
-    card.classList.add('movie-card');
-
-    const img = document.createElement('img');
-    img.src = `${IMG_URL}${item.poster_path}`;
-    img.alt = item.title || item.name;
-    img.onclick = () => showDetails(item);
-
-    const title = document.createElement('div');
-    title.classList.add('movie-title');
-    title.textContent = item.title || item.name;
-
-    const rating = document.createElement('div');
-    rating.classList.add('movie-rating');
-    rating.innerHTML = `⭐ ${item.vote_average.toFixed(1)}/10`;
-
-    card.appendChild(img);
-    card.appendChild(title);
-    card.appendChild(rating);
-    container.appendChild(card);
-  });
-}
-
-function showDetails(item) {
-  currentItem = item;
-  document.getElementById('modal-title').textContent = item.title || item.name;
-  document.getElementById('modal-description').textContent = item.overview;
-  document.getElementById('modal-image').src = `${IMG_URL}${item.poster_path}`;
-  document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2));
-  document.getElementById('modal').style.display = 'flex';
-  document.getElementById('video-frame').innerHTML = ''; // Clear previous video
-}
-
-function loadPlayer() {
-  const server = document.getElementById('server').value;
-  const type = currentItem.media_type === "movie" ? "movie" : "tv";
-  const id = currentItem.id;
-  let embedURL = "";
-
-  if (server === "vidsrc.cc") {
-    embedURL = `https://vidsrc.cc/v2/embed/${type}/${id}`;
-  } else if (server === "vidsrc.me") {
-    embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${id}`;
-  } else if (server === "player.videasy.net") {
-    embedURL = `https://player.videasy.net/${type}/${id}`;
-  }
-
-  setTimeout(() => {
-    document.getElementById('video-frame').innerHTML =
-      `<iframe src="${embedURL}" width="100%" height="315" frameborder="0" allowfullscreen></iframe>`;
-  }, 800);
-}
-
-function closeModal() {
-  document.getElementById('modal').style.display = 'none';
-  document.getElementById('video-frame').innerHTML = '';
-}
-
-function openSearchModal() {
-  document.getElementById('search-modal').style.display = 'flex';
-  document.getElementById('search-input').focus();
-}
-
-function closeSearchModal() {
-  document.getElementById('search-modal').style.display = 'none';
-  document.getElementById('search-results').innerHTML = '';
-}
-
-async function searchTMDB() {
-  const query = document.getElementById('search-input').value;
-  if (!query.trim()) {
-    document.getElementById('search-results').innerHTML = '';
-    return;
-  }
-
-  const res = await fetch(`${BASE_URL}/search/multi?api_key=${k}&query=${query}`);
-  const data = await res.json();
-
-  const container = document.getElementById('search-results');
-  container.innerHTML = '';
-  data.results.forEach(item => {
-    if (!item.poster_path) return;
-    const img = document.createElement('img');
-    img.src = `${IMG_URL}${item.poster_path}`;
-    img.alt = item.title || item.name;
-    img.onclick = () => {
-      closeSearchModal();
-      showDetails(item);
-    };
-    container.appendChild(img);
-  });
-}
-
-async function init() {
-  const movies = await fetchTrending('movie');
-  const tvShows = await fetchTrending('tv');
-  const anime = await fetchTrendingAnime();
-
-  startBannerRotation(movies);
-  displayList(movies, 'movies-list');
-  displayList(tvShows, 'tvshows-list');
-  displayList(anime, 'anime-list');
-}
-
-init();
-
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  if (
-    e.ctrlKey && (
-      ['u', 's', 'c', 'x', 'i', 'j', 'k'].includes(e.key.toLowerCase()) ||
-      e.key === 'F12'
-    )
-  ) {
-    e.preventDefault();
+<script>
+// OPTIONAL: Press Ctrl + Shift + T to toggle test button
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 't') {
+    const testDiv = document.getElementById('popads-test');
+    testDiv.style.display = testDiv.style.display === 'none' ? 'block' : 'none';
   }
 });
-document.addEventListener('dragstart', e => e.preventDefault());
+</script>
+
+</body>
+</html>
