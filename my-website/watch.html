@@ -32,7 +32,6 @@
 
   <h1>Watch: Loading...</h1>
 
-  <!-- Server dropdown selector -->
   <label for="server">Select Server:</label>
   <select id="server" onchange="changeServer()">
     <option value="">MixDrop</option>
@@ -40,7 +39,6 @@
     <option value="">VidHide</option>
   </select>
 
-  <!-- Video iframe -->
   <iframe id="videoFrame" allowfullscreen allow="autoplay"></iframe>
 
   <script>
@@ -70,7 +68,6 @@
       document.getElementById('videoFrame').src = selectedURL;
     }
 
-    // Pre-fill dropdown values
     document.addEventListener("DOMContentLoaded", () => {
       const serverDropdown = document.getElementById('server');
       serverDropdown.options[0].value = serverURLs.mixdrop;
