@@ -69,24 +69,28 @@
 
   <script>
     function enterSite() {
-      window.location.href = "home.html"; // Manual click redirect
+      window.location.href = "home.html";
     }
 
-    // Auto-redirect real users (not bots)
+    // Auto-redirect real users (not bots or headless browsers)
     (function () {
       const bots = [
         'Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot',
         'Baiduspider', 'YandexBot', 'Sogou', 'Exabot',
         'facebot', 'facebookexternalhit', 'ia_archiver'
       ];
-      const ua = navigator.userAgent;
-      const isBot = bots.some(bot => ua.includes(bot));
 
-      if (!isBot) {
+      const ua = navigator.userAgent;
+      const isBotUA = bots.some(bot => ua.includes(bot));
+
+      const isHeadless = navigator.webdriver || !navigator.plugins.length || !navigator.languages;
+      const isTouchCapable = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+      if (!isBotUA && !isHeadless && isTouchCapable) {
         window.location.href = "home.html";
       }
 
-      console.log("User-Agent:", ua, " | Is bot:", isBot);
+      console.log("User-Agent:", ua, " | isBotUA:", isBotUA, " | isHeadless:", isHeadless, " | isTouchCapable:", isTouchCapable);
     })();
   </script>
 
