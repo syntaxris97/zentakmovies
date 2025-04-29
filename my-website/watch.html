@@ -32,49 +32,61 @@
 
   <h1>Watch: Loading...</h1>
 
+  <!-- Server dropdown selector -->
   <label for="server">Select Server:</label>
-  <select id="server" onchange="changeServer()">
-    <option value="">MixDrop</option>
-    <option value="">FileMoon</option>
-    <option value="">VidHide</option>
-  </select>
+  <select id="server" onchange="changeServer()"></select>
 
+  <!-- Video iframe -->
   <iframe id="videoFrame" allowfullscreen allow="autoplay"></iframe>
 
   <script>
+    // Helper to get URL parameters
     function getQueryParam(name) {
       const url = new URL(window.location.href);
       return url.searchParams.get(name);
     }
 
+    // Extract title, server, and video ID
     const title = getQueryParam('title') || "Movie";
     const server = getQueryParam('server') || "mixdrop";
     const videoID = getQueryParam('q') || "";
 
+    // Set the page title and heading
     document.title = `Watch: ${title}`;
     document.querySelector("h1").innerText = `Watch: ${title}`;
 
+    // Server embed links
     const serverURLs = {
       mixdrop: `https://mixdrop.co/e/${videoID}`,
       filemoon: `https://filemoon.sx/e/${videoID}`,
       vidhide: `https://vidhide.com/e/${videoID}`
     };
 
+    // Set the initial iframe source
     const iframe = document.getElementById("videoFrame");
     iframe.src = serverURLs[server] || serverURLs.mixdrop;
 
-    function changeServer() {
-      const selectedURL = document.getElementById('server').value;
-      document.getElementById('videoFrame').src = selectedURL;
+    // Set dropdown options dynamically
+    const serverDropdown = document.getElementById('server');
+    const servers = {
+      mixdrop: "MixDrop",
+      filemoon: "FileMoon",
+      vidhide: "VidHide"
+    };
+
+    for (const key in servers) {
+      const option = document.createElement("option");
+      option.value = serverURLs[key];
+      option.text = servers[key];
+      if (key === server) option.selected = true;
+      serverDropdown.appendChild(option);
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const serverDropdown = document.getElementById('server');
-      serverDropdown.options[0].value = serverURLs.mixdrop;
-      serverDropdown.options[1].value = serverURLs.filemoon;
-      serverDropdown.options[2].value = serverURLs.vidhide;
-      serverDropdown.value = serverURLs[server];
-    });
+    // Switch iframe when server changes
+    function changeServer() {
+      const selectedURL = serverDropdown.value;
+      iframe.src = selectedURL;
+    }
   </script>
 
 </body>
