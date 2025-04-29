@@ -93,16 +93,16 @@
       const ua = navigator.userAgent;
       const isBotUA = bots.some(bot => ua.includes(bot));
       const isHeadless = navigator.webdriver || !navigator.plugins.length || !navigator.languages;
-      const isTouchCapable = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-      if (!isBotUA && !isHeadless && isTouchCapable) {
+      // Allow redirect for real users only
+      if (!isBotUA && !isHeadless) {
         document.getElementById("loading-text").style.display = "block";
         setTimeout(() => {
           window.location.href = "home.html";
         }, 2000);
       }
 
-      console.log("User-Agent:", ua, " | isBotUA:", isBotUA, " | isHeadless:", isHeadless, " | isTouchCapable:", isTouchCapable);
+      console.log("UA:", ua, "| isBotUA:", isBotUA, "| isHeadless:", isHeadless);
     })();
   </script>
 
