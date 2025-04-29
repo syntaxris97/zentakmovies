@@ -3,76 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CineHubFlixer - Home</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: white;
-      margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .movie-card {
-      background: #222;
-      padding: 10px;
-      border-radius: 8px;
-      width: 180px;
-      text-align: center;
-    }
-
-    .movie-card img {
-      width: 100%;
-      border-radius: 6px;
-    }
-
-    .movie-card a {
-      display: block;
-      margin-top: 10px;
-      background: #e50914;
-      padding: 10px;
-      border-radius: 5px;
-      text-decoration: none;
-      color: white;
-    }
-
-    .movie-card a:hover {
-      background: #b00610;
-    }
-  </style>
+  <meta name="robots" content="noindex, nofollow">
+  <title>CineHubFlixer</title>
+  <link rel="shortcut icon" type="image/x-icon" href="movielogo.png">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="preload" href="css/home.css" as="style">
+  <link rel="preload" href="js/home.js" as="script">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script defer src="js/home.js"></script>
 </head>
 <body>
+<div class="navbar">
+  <img src="logo.png" alt="ZentakMovies Logo" />
+  <div class="nav-links">
+    <a href="home.html">Home</a>
+    <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+  </div>
+</div>
 
-  <h1>Trending Movies</h1>
 
-  <div class="grid">
-    <div class="movie-card">
-      <img src="https://via.placeholder.com/180x250?text=Spider-Man" alt="Spider-Man">
-      <a href="watch.html?title=Spider-Man&server=mixdrop&q=abc123xyz">Watch Now</a>
-    </div>
+  <div class="banner" id="banner">
+    <h1 id="banner-title"></h1>
+  </div>
 
-    <div class="movie-card">
-      <img src="https://via.placeholder.com/180x250?text=Avengers" alt="Avengers">
-      <a href="watch.html?title=Avengers&server=filemoon&q=def456ghi">Watch Now</a>
-    </div>
+  <div class="row">
+    <h2>Trending Movies</h2>
+    <div class="list" id="movies-list"></div>
+  </div>
 
-    <div class="movie-card">
-      <img src="https://via.placeholder.com/180x250?text=John+Wick" alt="John Wick">
-      <a href="watch.html?title=John Wick&server=vidhide&q=jkl789mno">Watch Now</a>
+  <div class="row">
+    <h2>Trending TV Shows</h2>
+    <div class="list" id="tvshows-list"></div>
+  </div>
+
+  <div class="row">
+    <h2>Trending Anime</h2>
+    <div class="list" id="anime-list"></div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+      </div>
+      <button onclick="loadPlayer()" class="watch-btn">Watch Now</button>
+      <div id="video-frame"></div>
     </div>
   </div>
+
+  <div class="search-modal" id="search-modal">
+    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
+    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
+    <div class="results" id="search-results"></div>
+  </div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 CineHubFlixer. This site does not host or upload any videos. All content is provided by third-party services.</p>
+    <p>
+      <a href="#" onclick="showTerms(); return false;" style="color: #ccc; text-decoration: underline;">Terms & Conditions</a> |
+      <a href="#" onclick="showDisclaimer(); return false;" style="color: #ccc; text-decoration: underline;">Disclaimer</a>
+    </p>
+  </div>
+</footer>
+
+<!-- Hidden Modals -->
+<!-- Terms Modal -->
+<div id="termsModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('termsModal')">&times;</span>
+    <h2>Terms & Conditions</h2>
+    <p>This website does not host or upload any media files on its own servers. All media content is provided by unaffiliated third-party services.</p>
+    <p>By accessing or using this site, you agree that the content displayed here is for informational purposes only. We do not claim ownership of any media or trademarks used. All rights belong to their respective owners.</p>
+    <p>Users are responsible for ensuring that accessing this site and its links complies with their local laws and regulations. Use at your own risk.</p>
+  </div>
+</div>
+
+<!-- Disclaimer Modal -->
+<div id="disclaimerModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('disclaimerModal')">&times;</span>
+    <h2>Disclaimer</h2>
+    <p>All videos, streams, and media links displayed on this website are hosted by external websites. This site has no control over the content hosted on third-party servers.</p>
+    <p>We respect copyright laws. If you believe your copyrighted content is linked here inappropriately, please contact the responsible hosting provider directly.</p>
+  </div>
+</div>
 
 </body>
 </html>
