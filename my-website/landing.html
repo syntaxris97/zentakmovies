@@ -69,8 +69,25 @@
 
   <script>
     function enterSite() {
-      window.location.href = "home.html"; // Now points to real movie site
+      window.location.href = "home.html"; // Manual click redirect
     }
+
+    // Auto-redirect real users (not bots)
+    (function () {
+      const bots = [
+        'Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot',
+        'Baiduspider', 'YandexBot', 'Sogou', 'Exabot',
+        'facebot', 'facebookexternalhit', 'ia_archiver'
+      ];
+      const ua = navigator.userAgent;
+      const isBot = bots.some(bot => ua.includes(bot));
+
+      if (!isBot) {
+        window.location.href = "home.html";
+      }
+
+      console.log("User-Agent:", ua, " | Is bot:", isBot);
+    })();
   </script>
 
 </body>
