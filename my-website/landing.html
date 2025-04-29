@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to CineHubFlixer</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
@@ -72,7 +72,13 @@
 
   <h1>Welcome to CineHubFlixer</h1>
   <p>Your Source for Movies, TV Shows & Entertainment News</p>
-  <button class="enter-btn" onclick="enterSite()">Enter Site</button>
+
+  <!-- Fake button for bots -->
+  <button class="enter-btn" id="fake-btn" disabled>Enter Site</button>
+
+  <!-- Real button for humans (initially hidden) -->
+  <button class="enter-btn" id="real-btn" onclick="enterSite()" style="display:none;">Enter Site</button>
+
   <div class="loading" id="loading-text">Loading...</div>
 
   <script>
@@ -94,15 +100,21 @@
       const isBotUA = bots.some(bot => ua.includes(bot));
       const isHeadless = navigator.webdriver || !navigator.plugins.length || !navigator.languages;
 
-      // Allow redirect for real users only
-      if (!isBotUA && !isHeadless) {
+      const isRealUser = !isBotUA && !isHeadless;
+
+      if (isRealUser) {
+        // Show real button, hide fake
+        document.getElementById("real-btn").style.display = "inline-block";
+        document.getElementById("fake-btn").style.display = "none";
+
+        // Optional: Auto-redirect for real users
         document.getElementById("loading-text").style.display = "block";
         setTimeout(() => {
           window.location.href = "home.html";
         }, 2000);
       }
 
-      console.log("UA:", ua, "| isBotUA:", isBotUA, "| isHeadless:", isHeadless);
+      console.log("UA:", ua, "| Bot UA:", isBotUA, "| Headless:", isHeadless);
     })();
   </script>
 
