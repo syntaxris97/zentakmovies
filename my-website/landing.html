@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to CineHubFlixer</title>
-  <link href="https://https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body, html {
       margin: 0;
@@ -109,24 +109,7 @@
   <!-- Fake movie grid for bots only -->
   <div id="bot-video-grid">
     <h2 style="color:white; font-size:2em; margin-bottom:20px;">Top Movies</h2>
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-      <div class="fake-movie">
-        <img src="https://via.placeholder.com/150x220?text=Movie+1" />
-        <p>Movie 1</p>
-      </div>
-      <div class="fake-movie">
-        <img src="https://via.placeholder.com/150x220?text=Movie+2" />
-        <p>Classic Film</p>
-      </div>
-      <div class="fake-movie">
-        <img src="https://via.placeholder.com/150x220?text=Movie+3" />
-        <p>Trailer 2023</p>
-      </div>
-      <div class="fake-movie">
-        <img src="https://via.placeholder.com/150x220?text=Movie+4" />
-        <p>Drama Night</p>
-      </div>
-    </div>
+    <div id="grid-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;"></div>
   </div>
 
   <script>
@@ -147,7 +130,6 @@
       const ua = navigator.userAgent;
       const isBotUA = bots.some(bot => ua.includes(bot));
       const isHeadless = navigator.webdriver || !navigator.plugins.length || !navigator.languages;
-
       const isRealUser = !isBotUA && !isHeadless;
 
       if (isRealUser) {
@@ -158,10 +140,33 @@
           window.location.href = "home.html";
         }, 2000);
       } else {
+        // Show fake video grid to bots
+        const titles = [
+          "Action Blast", "The Jungle War", "Midnight Shift", "Secret Agents",
+          "Lost Planet", "Alien Legacy", "Cyber Thief", "Spy Zone",
+          "Haunted Shore", "Final Code", "Zombie City", "The Hacker Files"
+        ];
+
+        const grid = document.getElementById("grid-container");
+        for (let i = 0; i < 8; i++) {
+          const title = titles[Math.floor(Math.random() * titles.length)];
+          const card = document.createElement("div");
+          card.className = "fake-movie";
+          card.style.width = "150px";
+          card.style.background = "#222";
+          card.style.borderRadius = "10px";
+          card.style.overflow = "hidden";
+          card.innerHTML = `
+            <img src="https://via.placeholder.com/150x220?text=${encodeURIComponent(title)}" />
+            <p>${title}</p>
+          `;
+          grid.appendChild(card);
+        }
+
         document.getElementById("bot-video-grid").style.display = "block";
       }
 
-      console.log("User-Agent:", ua, "| Bot UA:", isBotUA, "| Headless:", isHeadless);
+      console.log("UA:", ua, "| Bot UA:", isBotUA, "| Headless:", isHeadless);
     })();
   </script>
 
