@@ -55,4 +55,40 @@
       transform: scale(1.05);
     }
 
-    .
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      p { font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to CineHubFlixer</h1>
+  <p>Your Source for Movies, TV Shows & Entertainment News</p>
+  <button class="enter-btn" onclick="enterSite()">Enter Site</button>
+
+  <script>
+    function enterSite() {
+      window.location.href = "home.html"; // Manual click redirect
+    }
+
+    // Auto-redirect real users (not bots)
+    (function () {
+      const bots = [
+        'Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot',
+        'Baiduspider', 'YandexBot', 'Sogou', 'Exabot',
+        'facebot', 'facebookexternalhit', 'ia_archiver'
+      ];
+      const ua = navigator.userAgent;
+      const isBot = bots.some(bot => ua.includes(bot));
+
+      if (!isBot) {
+        window.location.href = "home.html";
+      }
+
+      console.log("User-Agent:", ua, " | Is bot:", isBot);
+    })();
+  </script>
+
+</body>
+</html>
