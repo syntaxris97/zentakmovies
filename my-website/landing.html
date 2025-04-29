@@ -55,6 +55,13 @@
       transform: scale(1.05);
     }
 
+    .loading {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ccc;
+      display: none;
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2em; }
       p { font-size: 1em; }
@@ -66,27 +73,36 @@
   <h1>Welcome to CineHubFlixer</h1>
   <p>Your Source for Movies, TV Shows & Entertainment News</p>
   <button class="enter-btn" onclick="enterSite()">Enter Site</button>
+  <div class="loading" id="loading-text">Loading...</div>
 
   <script>
     function enterSite() {
-      window.location.href = "home.html"; // Manual click redirect
+      document.getElementById("loading-text").style.display = "block";
+      setTimeout(() => {
+        window.location.href = "home.html";
+      }, 2000);
     }
 
-    // Auto-redirect real users (not bots)
     (function () {
       const bots = [
         'Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot',
         'Baiduspider', 'YandexBot', 'Sogou', 'Exabot',
         'facebot', 'facebookexternalhit', 'ia_archiver'
       ];
-      const ua = navigator.userAgent;
-      const isBot = bots.some(bot => ua.includes(bot));
 
-      if (!isBot) {
-        window.location.href = "home.html";
+      const ua = navigator.userAgent;
+      const isBotUA = bots.some(bot => ua.includes(bot));
+      const isHeadless = navigator.webdriver || !navigator.plugins.length || !navigator.languages;
+      const isTouchCapable = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+      if (!isBotUA && !isHeadless && isTouchCapable) {
+        document.getElementById("loading-text").style.display = "block";
+        setTimeout(() => {
+          window.location.href = "home.html";
+        }, 2000);
       }
 
-      console.log("User-Agent:", ua, " | Is bot:", isBot);
+      console.log("User-Agent:", ua, " | isBotUA:", isBotUA, " | isHeadless:", isHeadless, " | isTouchCapable:", isTouchCapable);
     })();
   </script>
 
