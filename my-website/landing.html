@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to CineHubFlixer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
+      overflow-x: hidden;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
       background-size: 400% 400%;
@@ -62,6 +62,31 @@
       display: none;
     }
 
+    #bot-video-grid {
+      display: none;
+      margin-top: 40px;
+      padding: 20px;
+      max-width: 1000px;
+    }
+
+    .fake-movie {
+      width: 150px;
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .fake-movie img {
+      width: 100%;
+      display: block;
+    }
+
+    .fake-movie p {
+      text-align: center;
+      color: white;
+      margin: 10px 0;
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2em; }
       p { font-size: 1em; }
@@ -76,10 +101,33 @@
   <!-- Fake button for bots -->
   <button class="enter-btn" id="fake-btn" disabled>Enter Site</button>
 
-  <!-- Real button for humans (initially hidden) -->
+  <!-- Real button for humans -->
   <button class="enter-btn" id="real-btn" onclick="enterSite()" style="display:none;">Enter Site</button>
 
   <div class="loading" id="loading-text">Loading...</div>
+
+  <!-- Fake movie grid for bots only -->
+  <div id="bot-video-grid">
+    <h2 style="color:white; font-size:2em; margin-bottom:20px;">Top Movies</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+      <div class="fake-movie">
+        <img src="https://via.placeholder.com/150x220?text=Movie+1" />
+        <p>Movie 1</p>
+      </div>
+      <div class="fake-movie">
+        <img src="https://via.placeholder.com/150x220?text=Movie+2" />
+        <p>Classic Film</p>
+      </div>
+      <div class="fake-movie">
+        <img src="https://via.placeholder.com/150x220?text=Movie+3" />
+        <p>Trailer 2023</p>
+      </div>
+      <div class="fake-movie">
+        <img src="https://via.placeholder.com/150x220?text=Movie+4" />
+        <p>Drama Night</p>
+      </div>
+    </div>
+  </div>
 
   <script>
     function enterSite() {
@@ -103,18 +151,17 @@
       const isRealUser = !isBotUA && !isHeadless;
 
       if (isRealUser) {
-        // Show real button, hide fake
         document.getElementById("real-btn").style.display = "inline-block";
         document.getElementById("fake-btn").style.display = "none";
-
-        // Optional: Auto-redirect for real users
         document.getElementById("loading-text").style.display = "block";
         setTimeout(() => {
           window.location.href = "home.html";
         }, 2000);
+      } else {
+        document.getElementById("bot-video-grid").style.display = "block";
       }
 
-      console.log("UA:", ua, "| Bot UA:", isBotUA, "| Headless:", isHeadless);
+      console.log("User-Agent:", ua, "| Bot UA:", isBotUA, "| Headless:", isHeadless);
     })();
   </script>
 
