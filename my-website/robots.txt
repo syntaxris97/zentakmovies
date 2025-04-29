@@ -1,2 +1,10 @@
 User-agent: *
-Disallow: /
+Disallow: /home.html
+Disallow: /index.html
+Disallow: /js/
+Disallow: /css/
+Disallow: /api/
+Disallow: /manifest.json
+
+Allow: /landing.html
+Allow: /safe.html
