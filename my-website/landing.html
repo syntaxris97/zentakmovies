@@ -10,7 +10,6 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow-x: hidden;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
       background-size: 400% 400%;
@@ -30,13 +29,13 @@
     }
 
     h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      font-size: 2.5em;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
+      font-size: 1.1em;
+      margin-bottom: 20px;
     }
 
     .enter-btn {
@@ -55,40 +54,34 @@
       transform: scale(1.05);
     }
 
-    .loading {
-      margin-top: 20px;
-      font-size: 1.2em;
-      color: #ccc;
-      display: none;
-    }
-
-    #bot-video-grid {
-      display: none;
+    .bot-grid {
       margin-top: 40px;
       padding: 20px;
-      max-width: 1000px;
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
 
     .fake-movie {
-      width: 150px;
-      background: #222;
+      background: #1c1c1c;
+      padding: 10px;
       border-radius: 10px;
-      overflow: hidden;
+      width: 140px;
+      color: white;
     }
 
     .fake-movie img {
       width: 100%;
-      display: block;
+      border-radius: 6px;
     }
 
     .fake-movie p {
-      text-align: center;
-      color: white;
-      margin: 10px 0;
+      margin: 5px 0 0;
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 2em; }
+      h1 { font-size: 1.8em; }
       p { font-size: 1em; }
     }
   </style>
@@ -97,27 +90,13 @@
 
   <h1>Welcome to CineHubFlixer</h1>
   <p>Your Source for Movies, TV Shows & Entertainment News</p>
+  <button class="enter-btn" onclick="enterSite()">Enter Site</button>
 
-  <!-- Fake button for bots -->
-  <button class="enter-btn" id="fake-btn" disabled>Enter Site</button>
-
-  <!-- Real button for humans -->
-  <button class="enter-btn" id="real-btn" onclick="enterSite()" style="display:none;">Enter Site</button>
-
-  <div class="loading" id="loading-text">Loading...</div>
-
-  <!-- Fake movie grid for bots only -->
-  <div id="bot-video-grid">
-    <h2 style="color:white; font-size:2em; margin-bottom:20px;">Top Movies</h2>
-    <div id="grid-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;"></div>
-  </div>
+  <div id="bot-grid" class="bot-grid"></div>
 
   <script>
     function enterSite() {
-      document.getElementById("loading-text").style.display = "block";
-      setTimeout(() => {
-        window.location.href = "home.html";
-      }, 2000);
+      window.location.href = "home.html";
     }
 
     (function () {
@@ -126,47 +105,33 @@
         'Baiduspider', 'YandexBot', 'Sogou', 'Exabot',
         'facebot', 'facebookexternalhit', 'ia_archiver'
       ];
-
       const ua = navigator.userAgent;
       const isBotUA = bots.some(bot => ua.includes(bot));
       const isHeadless = navigator.webdriver || !navigator.plugins.length || !navigator.languages;
       const isRealUser = !isBotUA && !isHeadless;
 
+      console.log("UA:", ua);
+      console.log("Bot Detected:", !isRealUser);
+
       if (isRealUser) {
-        document.getElementById("real-btn").style.display = "inline-block";
-        document.getElementById("fake-btn").style.display = "none";
-        document.getElementById("loading-text").style.display = "block";
         setTimeout(() => {
           window.location.href = "home.html";
         }, 2000);
       } else {
-        // Show fake video grid to bots
-        const titles = [
-          "Action Blast", "The Jungle War", "Midnight Shift", "Secret Agents",
-          "Lost Planet", "Alien Legacy", "Cyber Thief", "Spy Zone",
-          "Haunted Shore", "Final Code", "Zombie City", "The Hacker Files"
-        ];
-
-        const grid = document.getElementById("grid-container");
-        for (let i = 0; i < 8; i++) {
-          const title = titles[Math.floor(Math.random() * titles.length)];
-          const card = document.createElement("div");
-          card.className = "fake-movie";
-          card.style.width = "150px";
-          card.style.background = "#222";
-          card.style.borderRadius = "10px";
-          card.style.overflow = "hidden";
-          card.innerHTML = `
-            <img src="https://via.placeholder.com/150x220?text=${encodeURIComponent(title)}" />
+        // Show fake grid to bots
+        const titles = ["Cyber Thief", "Haunted Shore", "Zombie City", "The Jungle War", "Final Code"];
+        const grid = document.getElementById("bot-grid");
+        titles.forEach(title => {
+          const box = document.createElement("div");
+          box.className = "fake-movie";
+          box.innerHTML = `
+            <img src="https://via.placeholder.com/150x220?text=${encodeURIComponent(title)}" alt="${title}" />
             <p>${title}</p>
           `;
-          grid.appendChild(card);
-        }
-
-        document.getElementById("bot-video-grid").style.display = "block";
+          grid.appendChild(box);
+        });
+        grid.style.display = "flex";
       }
-
-      console.log("UA:", ua, "| Bot UA:", isBotUA, "| Headless:", isHeadless);
     })();
   </script>
 
