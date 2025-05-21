@@ -9,7 +9,7 @@ if (botKeywords.some(bot => agent.includes(bot))) {
   window.location.href = "safe.html";
 }
 
-const k = "96f19e702988f5aa04d325e08a84c03e";
+const k = "04c35731a5ee918f014970082a0088b1";
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
