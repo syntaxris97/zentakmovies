@@ -1,7 +1,9 @@
 /*
+
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; object-src 'none'
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
   Referrer-Policy: no-referrer
-  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), clipboard-read=(), clipboard-write=()
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), clipboard-read=(self), clipboard-write=(self)
